@@ -548,6 +548,16 @@ footer { background:var(--text); padding:3rem 0 2rem; }
 .modal-body ul { padding-left:1.25rem; margin-bottom:.75rem; }
 .modal-body li { font-size:.85rem; color:var(--text-muted); line-height:1.7; margin-bottom:.35rem; }
 
+.hero-mobile-cta {
+  display:none; align-items:center; justify-content:center;
+  margin-top:1.75rem; width:100%;
+  background:var(--primary); color:white;
+  font-size:1rem; font-weight:700; padding:.85rem 1.5rem;
+  border-radius:var(--r-pill); text-decoration:none;
+  transition:background .2s, transform .2s;
+}
+.hero-mobile-cta:hover { background:var(--primary-light); color:white; transform:translateY(-1px); }
+
 /* ============================================================
    RESPONSIVE
 ============================================================ */
@@ -579,6 +589,8 @@ footer { background:var(--text); padding:3rem 0 2rem; }
   .footer-grid  { grid-template-columns:1fr; gap:2rem; }
   .footer-bottom{ flex-direction:column; text-align:center; }
   .float-stat   { position:static; display:inline-block; margin-top:1rem; }
+  .hero-grid .form-card { display:none; }
+  .hero-mobile-cta { display:inline-flex; }
 }
 @media (max-width:480px) {
   .container { padding:0 1.25rem; }
@@ -616,7 +628,7 @@ footer { background:var(--text); padding:3rem 0 2rem; }
         <li><a href="#about">About</a></li>
         <li><a href="#faq">FAQ</a></li>
       </ul>
-      <a href="#hero" class="nav-cta">Book a Free Call</a>
+      <a href="#book" class="nav-cta">Book a Free Call</a>
       <button class="hamburger" id="hamburger" aria-label="Toggle menu">
         <span></span><span></span><span></span>
       </button>
@@ -633,7 +645,7 @@ footer { background:var(--text); padding:3rem 0 2rem; }
     <li><a href="#about">About</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
-  <a href="#hero" class="nav-cta">Book a Free Strategy Call</a>
+  <a href="#book" class="nav-cta">Book a Free Strategy Call</a>
 </div>
 
 <!-- ============================================================
@@ -662,6 +674,7 @@ footer { background:var(--text); padding:3rem 0 2rem; }
           <span class="trust-chip"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>24/7 AI coverage</span>
           <span class="trust-chip"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>AI Voice + AEO/SEO</span>
         </div>
+        <a href="#book" class="hero-mobile-cta">Book My Free Strategy Call &rarr;</a>
       </div>
 
       <!--
@@ -1057,8 +1070,81 @@ footer { background:var(--text); padding:3rem 0 2rem; }
       <div class="urgency-badge"><span class="pulse"></span>Limited Availability &mdash; Northern Virginia &amp; DMV</div>
       <h2>Book Your Free AI Strategy Call</h2>
       <p>In 30 minutes, we'll identify your biggest lead-capture gap, show you what an AI Voice Agent would do for your specific business, and give you a clear plan — no pitch, no pressure.</p>
-      <a href="#hero" class="btn-white">Book My Free Call &rarr;</a>
+      <a href="#book" class="btn-white">Book My Free Call &rarr;</a>
       <p class="cta-note">Free 30-min session &bull; No obligation &bull; Response within 24 hours</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BOOK — DEDICATED BOOKING SECTION
+============================================================ -->
+<section id="book" style="background:var(--surface);border-top:1px solid var(--border);">
+  <div class="container">
+    <div class="centered" style="margin-bottom:2.5rem;">
+      <p class="eyebrow">Book Now</p>
+      <h2 class="section-title">Book Your Free AI Strategy Call</h2>
+      <p class="section-body">In 30 minutes, we'll identify your biggest lead-capture gap, show you exactly what AI would do for your business, and give you a clear plan — no pitch, no pressure.</p>
+    </div>
+    <!--
+      =====================================================
+      GHL FORM INTEGRATION
+      To connect this form to GoHighLevel:
+
+      Option A – Webhook:
+        Change the <form action="#"> to:
+        <form action="https://services.leadconnectorhq.com/hooks/
+                      YOUR_LOCATION_ID/webhook-trigger/YOUR_ID"
+              method="POST">
+
+      Option B – Embedded GHL form:
+        Replace everything from <form> to </form> with the
+        embed snippet from your GHL funnel/form builder.
+
+      Webhook URL placeholder:
+        https://YOUR-GHL-WEBHOOK-URL-HERE
+      =====================================================
+    -->
+    <div class="form-card" style="max-width:680px;margin:0 auto;">
+      <p class="form-card-title">Tell us about your business</p>
+      <p class="form-card-sub">We'll map your AI advantage and follow up within 24 hours.</p>
+      <form id="book-form" action="#" method="POST">
+        <div class="frow">
+          <div class="fg">
+            <label for="b-name">Full Name *</label>
+            <input type="text" id="b-name" name="full_name" placeholder="Jane Smith" required>
+          </div>
+          <div class="fg">
+            <label for="b-email">Email Address *</label>
+            <input type="email" id="b-email" name="email" placeholder="jane@company.com" required>
+          </div>
+        </div>
+        <div class="frow">
+          <div class="fg">
+            <label for="b-phone">Phone Number *</label>
+            <input type="tel" id="b-phone" name="phone" placeholder="(703) 555-0100" required>
+          </div>
+          <div class="fg">
+            <label for="b-web">Website URL</label>
+            <input type="url" id="b-web" name="website" placeholder="https://yourbusiness.com">
+          </div>
+        </div>
+        <div class="fg">
+          <p class="svc-label">Services Interested In</p>
+          <div class="check-grid">
+            <label class="check-item"><input type="checkbox" name="services[]" value="ai_voice"> AI Voice Agent</label>
+            <label class="check-item"><input type="checkbox" name="services[]" value="aeo"> AEO / SEO</label>
+          </div>
+        </div>
+        <div class="consent-block">
+          <label class="consent-line">
+            <input type="checkbox" name="sms_consent" id="b-sms-consent" required>
+            <span>I agree to receive SMS messages from Points Beyond AI. Message &amp; data rates may apply. Reply STOP to unsubscribe. View our <a href="#" onclick="openModal('privacy');return false;">Privacy Policy</a>.</span>
+          </label>
+          <p class="a2p-text">By submitting this form, you consent to be contacted by Points Beyond AI via phone, email, and SMS regarding your inquiry. Reply HELP for help, STOP to cancel.</p>
+        </div>
+        <button type="submit" class="btn-submit">Book My Free Strategy Call &rarr;</button>
+      </form>
     </div>
   </div>
 </section>
@@ -1096,7 +1182,7 @@ footer { background:var(--text); padding:3rem 0 2rem; }
       <div class="footer-col">
         <h4>Contact</h4>
         <ul>
-          <li><a href="#hero">Book a Free Call</a></li>
+          <li><a href="#book">Book a Free Call</a></li>
           <li><a href="https://www.linkedin.com/in/johnhwhitlock/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
           <li><a href="#" onclick="openModal('privacy');return false;">Privacy Policy</a></li>
           <li><a href="#" onclick="openModal('terms');return false;">Terms &amp; Conditions</a></li>
