@@ -548,6 +548,17 @@ footer { background:var(--text); padding:3rem 0 2rem; }
 .modal-body ul { padding-left:1.25rem; margin-bottom:.75rem; }
 .modal-body li { font-size:.85rem; color:var(--text-muted); line-height:1.7; margin-bottom:.35rem; }
 
+.reviews-toggle {
+  display:none; text-align:center; margin-top:1.25rem; position:relative; z-index:1;
+}
+.reviews-toggle a {
+  font-size:.8rem; font-weight:600; color:rgba(255,255,255,.55);
+  text-decoration:none; padding:.35rem .9rem;
+  border:1px solid rgba(255,255,255,.2); border-radius:var(--r-pill);
+  transition:color .2s,border-color .2s;
+}
+.reviews-toggle a:hover { color:rgba(255,255,255,.85); border-color:rgba(255,255,255,.4); }
+
 .hero-mobile-cta {
   display:none; align-items:center; justify-content:center;
   margin-top:1.75rem; width:100%;
@@ -570,8 +581,9 @@ footer { background:var(--text); padding:3rem 0 2rem; }
 }
 @media (max-width:768px) {
   html { font-size:16px; }
-  section { padding:3.5rem 0; }
-  #hero   { padding:88px 0 3.5rem; }
+  section { padding:2.5rem 0; }
+  #hero   { padding:88px 0 2.5rem; }
+  #proof  { padding:1.75rem 0; }
   .nav-links,.ai-badge { display:none; }
   .hamburger { display:flex; }
   .frow  { grid-template-columns:1fr; }
@@ -580,13 +592,19 @@ footer { background:var(--text); padding:3rem 0 2rem; }
   .services-grid{ grid-template-columns:1fr; max-width:100%; }
   .steps-grid   { grid-template-columns:1fr; gap:1rem; }
   .steps-grid::before { display:none; }
-  .stats-row    { grid-template-columns:1fr 1fr; }
-  .stat-item    { border-right:none; border-bottom:1px solid rgba(255,255,255,.1); }
+  .stats-row    { grid-template-columns:1fr 1fr; gap:.25rem; }
+  .stat-item    { padding:.65rem .5rem; border-right:none; border-bottom:1px solid rgba(255,255,255,.1); }
   .stat-item:nth-child(odd) { border-right:1px solid rgba(255,255,255,.1); }
   .stat-item:last-child     { border-bottom:none; }
-  .tgrid  { grid-template-columns:1fr; }
+  .stat-num { font-size:1.7rem; }
+  .stat-lbl { font-size:.73rem; }
+  .tgrid  { grid-template-columns:1fr; margin-top:1.25rem; }
+  .tcard  { padding:1.25rem; }
+  .tcard-extra { display:none; }
+  .reviews-toggle { display:block; }
   .cta-box{ padding:2.5rem 1.5rem; }
-  .footer-grid  { grid-template-columns:1fr; gap:2rem; }
+  .footer-grid  { grid-template-columns:1fr 1fr; gap:1.5rem; }
+  .footer-brand { grid-column:1/-1; }
   .footer-bottom{ flex-direction:column; text-align:center; }
   .float-stat   { position:static; display:inline-block; margin-top:1rem; }
   .hero-grid .form-card { display:none; }
@@ -894,7 +912,7 @@ footer { background:var(--text); padding:3rem 0 2rem; }
           <div><p class="author-name">Michael R.</p><p class="author-co">Owner, Home Services — Northern, VA</p></div>
         </div>
       </div>
-      <div class="tcard">
+      <div class="tcard tcard-extra">
         <div class="stars">
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -908,7 +926,7 @@ footer { background:var(--text); padding:3rem 0 2rem; }
           <div><p class="author-name">Sarah L.</p><p class="author-co">Co-Founder, Consulting Firm — Tysons, VA</p></div>
         </div>
       </div>
-      <div class="tcard">
+      <div class="tcard tcard-extra">
         <div class="stars">
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -922,6 +940,9 @@ footer { background:var(--text); padding:3rem 0 2rem; }
           <div><p class="author-name">David T.</p><p class="author-co">Practice Owner, Healthcare — McLean, VA</p></div>
         </div>
       </div>
+    </div>
+    <div class="reviews-toggle" id="reviews-toggle-wrap">
+      <a href="#" id="reviews-toggle-link" onclick="toggleReviews(event)">More reviews ↓</a>
     </div>
   </div>
 </section>
@@ -1057,21 +1078,6 @@ footer { background:var(--text); padding:3rem 0 2rem; }
         <div class="faq-ans"><div class="faq-ans-inner">Yes. We build on enterprise-grade platforms with bank-level encryption and zero-retention policies for sensitive data where required. We never use your business data to train AI models, and all integrations are configured to meet your industry's relevant compliance standards.</div></div>
       </div>
 
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     FINAL CTA
-============================================================ -->
-<section id="cta-final">
-  <div class="container">
-    <div class="cta-box">
-      <div class="urgency-badge"><span class="pulse"></span>Limited Availability &mdash; Northern Virginia &amp; DMV</div>
-      <h2>Book Your Free AI Strategy Call</h2>
-      <p>In 30 minutes, we'll identify your biggest lead-capture gap, show you what an AI Voice Agent would do for your specific business, and give you a clear plan — no pitch, no pressure.</p>
-      <a href="#book" class="btn-white">Book My Free Call &rarr;</a>
-      <p class="cta-note">Free 30-min session &bull; No obligation &bull; Response within 24 hours</p>
     </div>
   </div>
 </section>
@@ -1342,6 +1348,17 @@ document.querySelectorAll('.faq-q').forEach(q => {
     }
   });
 });
+
+// Reviews toggle (mobile)
+function toggleReviews(e) {
+  e.preventDefault();
+  var extras = document.querySelectorAll('.tcard-extra');
+  var link = document.getElementById('reviews-toggle-link');
+  var expanded = link.getAttribute('data-expanded') === 'true';
+  extras.forEach(function(el) { el.style.display = expanded ? '' : 'block'; });
+  link.textContent = expanded ? 'More reviews \u2193' : 'Hide reviews \u2191';
+  link.setAttribute('data-expanded', expanded ? 'false' : 'true');
+}
 
 // Modals
 function openModal(name) {
