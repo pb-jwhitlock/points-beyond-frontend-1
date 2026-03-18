@@ -581,37 +581,88 @@ footer { background:var(--text); padding:3rem 0 2rem; }
 }
 @media (max-width:768px) {
   html { font-size:16px; }
-  section { padding:2.5rem 0; }
-  #hero   { padding:88px 0 2.5rem; }
-  #proof  { padding:1.75rem 0; }
+
+  /* Global section padding */
+  section { padding:1.5rem 0; }
+  #hero   { padding:74px 0 1.5rem; }
+  #proof  { padding:1.5rem 0; }
+
+  /* Nav */
   .nav-links,.ai-badge { display:none; }
   .hamburger { display:flex; }
-  .frow  { grid-template-columns:1fr; }
-  .check-grid { grid-template-columns:1fr 1fr; }
-  .pain-grid    { grid-template-columns:1fr; }
-  .services-grid{ grid-template-columns:1fr; max-width:100%; }
-  .steps-grid   { grid-template-columns:1fr; gap:1rem; }
+
+  /* Headings & labels */
+  .section-title { margin-bottom:.5rem; }
+  .section-body  { margin-bottom:.4rem; }
+  .eyebrow       { margin-bottom:.4rem; }
+  .centered      { margin-bottom:.5rem; }
+
+  /* Hero */
+  .hero-eyebrow  { margin-bottom:.5rem; }
+  .hero-h1       { margin-bottom:.5rem; }
+  .hero-sub      { margin-bottom:1rem; }
+  .hero-mobile-cta { display:inline-flex; margin-top:1rem; }
+  .hero-grid .form-card { display:none; }
+
+  /* Pain points */
+  .pain-grid    { grid-template-columns:1fr; gap:.75rem; margin-top:.75rem; }
+  .pain-card    { padding:1rem 1rem 1rem 1.25rem; }
+  .pain-num     { margin-bottom:.4rem; }
+  .pain-grid .pain-card:nth-child(n+3) { display:none; }
+
+  /* Services */
+  .services-grid { grid-template-columns:1fr; max-width:100%; gap:.75rem; margin-top:.75rem; }
+  .svc-card      { padding:1.1rem; }
+  .svc-icon      { width:40px; height:40px; margin-bottom:.6rem; }
+  .svc-card h3   { margin-bottom:.4rem; }
+  .svc-card p    { margin-bottom:.6rem; }
+  .svc-list      { gap:.3rem; margin-bottom:.6rem; }
+
+  /* How It Works */
+  .steps-grid    { grid-template-columns:1fr; gap:.75rem; margin-top:.75rem; }
   .steps-grid::before { display:none; }
-  .stats-row    { grid-template-columns:1fr 1fr; gap:.25rem; }
-  .stat-item    { padding:.65rem .5rem; border-right:none; border-bottom:1px solid rgba(255,255,255,.1); }
+  .step-card     { padding:1rem; }
+  .step-num      { width:40px; height:40px; font-size:.9rem; margin-bottom:.6rem; }
+  .step-card h3  { margin-bottom:.3rem; }
+  .step-time     { margin-top:.4rem; }
+
+  /* Stats */
+  .stats-row     { grid-template-columns:1fr 1fr; gap:.25rem; }
+  .stat-item     { padding:.65rem .5rem; border-right:none; border-bottom:1px solid rgba(255,255,255,.1); }
   .stat-item:nth-child(odd) { border-right:1px solid rgba(255,255,255,.1); }
   .stat-item:last-child     { border-bottom:none; }
-  .stat-num { font-size:1.7rem; }
-  .stat-lbl { font-size:.73rem; }
+  .stat-num      { font-size:1.7rem; }
+  .stat-lbl      { font-size:.73rem; }
   #proof .stats-row { display:none; }
-  .tgrid  { grid-template-columns:1fr; margin-top:1.25rem; }
-  .tcard  { padding:1.25rem; }
-  .tcard-extra { display:none; }
+
+  /* Reviews */
+  .tgrid         { grid-template-columns:1fr; gap:.75rem; margin-top:.75rem; }
+  .tcard         { padding:.85rem; }
+  .stars         { margin-bottom:.4rem; }
+  .tcard-text    { margin-bottom:.5rem; }
+  .tcard-extra   { display:none; }
   .reviews-toggle { display:block; }
-  .cta-box{ padding:2.5rem 1.5rem; }
-  .footer-grid  { grid-template-columns:1fr 1fr; gap:1.5rem; }
-  .footer-brand { grid-column:1/-1; }
-  .footer-bottom{ flex-direction:column; text-align:center; }
-  .float-stat   { position:static; display:inline-block; margin-top:1rem; }
+
+  /* FAQ */
+  .faq-list      { margin-top:.75rem; }
+  .faq-item      { margin-bottom:.4rem; }
+  .faq-q         { padding:.85rem 1rem; }
+  .faq-ans-inner { padding:0 1rem .75rem; }
+
+  /* Book / form */
+  .form-card     { padding:1.1rem; }
+  .form-card-sub { margin-bottom:.75rem; }
+  .frow          { grid-template-columns:1fr; }
+  .check-grid    { grid-template-columns:1fr 1fr; }
+
+  /* Footer */
+  .footer-grid   { grid-template-columns:1fr 1fr; gap:.75rem; }
+  .footer-brand  { grid-column:1/-1; }
+  .footer-bottom { flex-direction:column; text-align:center; }
+  .float-stat    { position:static; display:inline-block; margin-top:.5rem; }
+
+  /* Hidden on mobile */
   #about { display:none; }
-  .pain-grid .pain-card:nth-child(n+3) { display:none; }
-  .hero-grid .form-card { display:none; }
-  .hero-mobile-cta { display:inline-flex; }
 }
 @media (max-width:480px) {
   .container { padding:0 1.25rem; }
